@@ -1,27 +1,20 @@
 package com.example.demo.student;
 
-import java.time.LocalDate;
-
-import org.springframework.web.bind.annotation.RestController;
-@RestController
 public class Student {
 
     private Long id;
     private String name;
     private String email;
-    private Integer age;
-    private LocalDate dob;
 
-    public Student(){
+    public Student() {
 
     }
 
-    public Student(Long id,String name,String email,Integer age,LocalDate dob ){
-        this.id=id;
-        this.name=name;
-        this.email=email;
-        this.age=age;
-        this.dob=dob;
+    public Student(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+
     }
 
     public Long getId() {
@@ -48,22 +41,6 @@ public class Student {
         this.email = email;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -71,14 +48,8 @@ public class Student {
         sb.append("id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", email=").append(email);
-        sb.append(", age=").append(age);
-        sb.append(", dob=").append(dob);
         sb.append('}');
         return sb.toString();
     }
-    
-
-
-
 
 }
