@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Exception.StudentNotFoundException;
+
 @Service
 public class StudentService {
 
@@ -15,12 +17,14 @@ public class StudentService {
             new Student(3L, "Kirti", "kirti@1234mail.com")));
 
     public List<Student> getAllStudents() {
+        if (students.isEmpty())
+            throw new StudentNotFoundException("No student exist");
         return students;
     }
 
     public Student getStudent(Long id) {
         return students.stream().filter(s -> s.getId().equals(id)).findFirst()
-                .orElseThrow(() -> new RuntimeException("Student not found!"));
+                .orElseThrow(() -> new StudentNotFoundException("Student Not Found"));
     }
 
     public Student addStudent(Student student) {
@@ -36,11 +40,12 @@ public class StudentService {
                 return student;
             }
         }
-        throw new RuntimeException("Student not found");
+        throw new StudentNotFoundException("Studen Not Exist");
     }
 
     public void deleteStudent(Long id) {
         students.removeIf(s -> s.getId().equals(id));
+        
     }
 
 }
